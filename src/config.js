@@ -11,10 +11,10 @@ export const IS_TESTNET = false; //~window.location.href.indexOf('testnet');
 export const NETWORKS = {
   56: {
     stakingAddress: ~window.location.href.indexOf('beta')
-      ? '0x7044326135a8f416dd4a1d48bc47f808879ed425'
+      ? '0x2aBF631940eAE8888dFfEFbEfC6BEbF662d7B5EB'
       : ~window.location.href.indexOf('test')
-      ? '0x7044326135a8f416dd4a1d48bc47f808879ed425'
-      : '0x7044326135a8f416dd4a1d48bc47f808879ed425',
+      ? '0x2aBF631940eAE8888dFfEFbEfC6BEbF662d7B5EB'
+      : '0x2aBF631940eAE8888dFfEFbEfC6BEbF662d7B5EB',
     drops:
       ~window.location.href.indexOf('localhost') ||
       ~window.location.href.indexOf('test')
