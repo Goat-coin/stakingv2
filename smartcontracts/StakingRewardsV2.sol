@@ -619,11 +619,11 @@ contract StakingRewards is RewardsDistributionRecipient, ReentrancyGuard, Pausab
 
     /* ========== STATE VARIABLES ========== */
 
-    IERC20 public constant rewardsToken = IERC20(0x7c67DCCb04b67d4666fd97B2a00bb6D9B8D82E3F); // GOAT
+    IERC20 public constant rewardsToken = IERC20(0x4230e244887a6b2Bf2fc8ad4FF6F182A17e5D29f); // CBG
     IERC20 public constant stakingToken = IERC20(0xa129848749fdF3C8b2EFc7392126f482869522d5); // GOAT-BNB Pancake LP2
     uint256 public periodFinish = 0;
     uint256 public rewardRate = 0;
-    uint256 public rewardsDuration = 50 days;
+    uint256 public rewardsDuration = 1000 days;
     uint256 public lastUpdateTime;
     uint256 public rewardPerTokenStored;
 
