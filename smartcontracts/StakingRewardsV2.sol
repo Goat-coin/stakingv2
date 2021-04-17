@@ -613,7 +613,7 @@ contract Pausable is Ownable {
 }
 
 // Inheritance
-contract StakingRewards is RewardsDistributionRecipient, ReentrancyGuard, Pausable {
+contract StakingRewardsV2 is RewardsDistributionRecipient, ReentrancyGuard, Pausable {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
