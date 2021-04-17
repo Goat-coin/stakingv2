@@ -28,12 +28,12 @@ export function WalletProvider({ children }) {
   const [isConnecting, setIsConnecting] = React.useState(false);
   const [chainId, setChainId] = React.useState(null);
 
-  const [lpName] = React.useState('CAKE-LP');
+  const [lpName] = React.useState('GOAT-BNB CAKE-LP');
   const [lpAddress, setLpAddress] = React.useState(null);
   const [lpDecimals] = React.useState(18);
 
-  const [goatAddress, setGoatAddress] = React.useState(null);
-  const [goatDecimals] = React.useState(18);
+  const [ rewardTokenAddress, setRewardTokenAddress] = React.useState(null);
+  const [rewardTokenDecimals] = React.useState(18);
 
   const [wrappedBNBDecimals] = React.useState(18);
 
@@ -60,11 +60,11 @@ export function WalletProvider({ children }) {
     [signer, lpAddress]
   );
 
-  const goatContract = React.useMemo(
+  const rewardTokenContract = React.useMemo(
     () =>
-      goatAddress &&
-      new ethers.Contract(goatAddress, ERC20_ABI, signer || READ_PROVIDER),
-    [signer, goatAddress]
+      rewardTokenAddress &&
+      new ethers.Contract(rewardTokenAddress, ERC20_ABI, signer || READ_PROVIDER),
+    [signer, rewardTokenAddress]
   );
 
   const wrappedBNBContract = React.useMemo(
@@ -157,13 +157,13 @@ export function WalletProvider({ children }) {
   // }
 
   async function load() {
-    const [lpAddress, goatAddress] = await Promise.all([
+    const [lpAddress, rewardTokenAddress] = await Promise.all([
       stakingContract.stakingToken,
       stakingContract.rewardsToken,
       connectToCached(),
     ]);
     setLpAddress(lpAddress);
-    setGoatAddress(goatAddress);
+    setRewardTokenAddress(rewardTokenAddress);
     setIsLoaded(true);
   }
 
@@ -190,9 +190,9 @@ export function WalletProvider({ children }) {
         lpDecimals,
         lpName,
 
-        goatContract,
-        goatAddress,
-        goatDecimals,
+        rewardTokenContract,
+        rewardTokenAddress,
+        rewardTokenDecimals,
 
         // cakeContract,
         // cakeAddress,
@@ -237,9 +237,9 @@ export function useWallet() {
     lpDecimals,
     lpName,
 
-    goatContract,
-    goatAddress,
-    goatDecimals,
+    rewardTokenContract,
+    rewardTokenAddress,
+    rewardTokenDecimals,
 
     cakeContract,
     cakeAddress,
@@ -274,9 +274,9 @@ export function useWallet() {
     lpDecimals,
     lpName,
 
-    goatContract,
-    goatAddress,
-    goatDecimals,
+    rewardTokenContract,
+    rewardTokenAddress,
+    rewardTokenDecimals,
 
     cakeContract,
     cakeAddress,

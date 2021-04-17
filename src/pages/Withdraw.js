@@ -53,7 +53,7 @@ export default function() {
   //   try {
   //     const earnedReward = await stakingContract.earned(address);
   //     // const totalSupply = await stakingContract.totalSupply();
-  //     return formatUnits(earnedReward, goatDecimals, 12);
+  //     return formatUnits(earnedReward, rewardTokenDecimals, 12);
   //   } catch (e) {
   //     return 0;
   //     // useNotifications.showErrorNotification(e);
@@ -67,7 +67,7 @@ export default function() {
     stakingContract,
     lpContract,
     lpDecimals,
-    goatDecimals,
+    rewardTokenDecimals,
     lpName,
   } = useWallet();
   const { availableGoatRewards, availableCakeRewards, rewardEarned } = useStats();
@@ -198,7 +198,7 @@ export default function() {
 
         <Paper className={clsx(classes.rewards)}>
           <div>Rewards Earned:</div>
-          <div>{rewardEarned} GOAT</div>
+          <div>{rewardEarned} CABBAGE</div>
         </Paper>
       </Box>
 

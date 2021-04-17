@@ -17,11 +17,11 @@ export function StatsProvider({ children }) {
     stakingContract,
     lpContract,
     wrappedBNBContract,
-    goatContract,
+    rewardTokenContract,
     lpAddress,
     lpDecimals,
     wrappedBNBDecimals,
-    goatDecimals,
+    rewardTokenDecimals,
     address,
   } = useWallet();
 
@@ -76,7 +76,7 @@ export function StatsProvider({ children }) {
         !isZero(poolGoatBalance) &&
         !isZero(bnbUSDPrice) &&
         !isZero(goatUSDPrice) &&
-        goatDecimals &&
+        rewardTokenDecimals &&
         lpDecimals &&
         wrappedBNBDecimals
       )
@@ -89,7 +89,7 @@ export function StatsProvider({ children }) {
     // const l = 18;
     const c = lpDecimals; // lp
     const p = wrappedBNBDecimals; // bnb
-    const m = goatDecimals; // goat
+    const m = rewardTokenDecimals; // goat
 
     // const g = parseInt(v[0][0]) / 10 ** l;
     // const y = parseInt(v[0][1]) / 10 ** l;
@@ -126,7 +126,7 @@ export function StatsProvider({ children }) {
     poolGoatBalance,
     bnbUSDPrice,
     goatUSDPrice,
-    goatDecimals,
+    rewardTokenDecimals,
     lpDecimals,
     wrappedBNBDecimals,
   ]);
@@ -253,7 +253,7 @@ export function StatsProvider({ children }) {
         stakingContract &&
         lpContract &&
         wrappedBNBContract &&
-        goatContract &&
+        rewardTokenContract &&
         lpAddress
       )
     )
@@ -269,7 +269,7 @@ export function StatsProvider({ children }) {
     ] = await Promise.all([
       lpContract.totalSupply(),
       wrappedBNBContract.balanceOf(lpAddress),
-      goatContract.balanceOf(lpAddress),
+      rewardTokenContract.balanceOf(lpAddress),
       getCoinUsdPrices(['wbnb', 'goat']),
       stakingContract.rewardPerToken(),
       stakingContract.getRewardForDuration()
@@ -311,9 +311,9 @@ export function StatsProvider({ children }) {
     try {
       const earnedReward = await stakingContract.earned(address);
       // const totalSupply = await stakingContract.totalSupply();
-      setRewardEarned(formatUnits(earnedReward, goatDecimals, 12));
+      setRewardEarned(formatUnits(earnedReward, rewardTokenDecimals, 12));
       
-      return formatUnits(earnedReward, goatDecimals, 12);
+      return formatUnits(earnedReward, rewardTokenDecimals, 12);
     } catch (e) {
       return 0;
       // getEarned();
@@ -355,11 +355,11 @@ export function StatsProvider({ children }) {
     stakingContract,
     lpContract,
     wrappedBNBContract,
-    goatContract,
+    rewardTokenContract,
     lpAddress,
     lpDecimals,
     wrappedBNBDecimals,
-    goatDecimals,
+    rewardTokenDecimals,
   ]);
 
   React.useEffect(() => {

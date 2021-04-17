@@ -49,7 +49,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function() {
   const classes = useStyles();
-  const { goatDecimals, wrappedBNBDecimals, stakingContract, address, lpContract } = useWallet();
+  const { 
+    // rewardTokenContract,
+    rewardTokenDecimals, 
+    wrappedBNBDecimals, 
+    stakingContract, 
+    address, 
+    lpContract 
+  } = useWallet();
+
   const {
     apy,
     rewardMultiplier,
@@ -66,7 +74,7 @@ export default function() {
  
   
   const getReward = async () => {
-     if (!(lpContract && address)) return;
+    if (!(lpContract && address)) return;
     try {
       
       const tx = await stakingContract.getReward();
@@ -94,7 +102,7 @@ export default function() {
         value: [
           <div className="flex items-start flex-wrap">
             <div className="flex items-end">
-              {/* {formatUnits(availableGoatRewards, goatDecimals)} GOAT */}
+              {formatUnits(rewardEarned, rewardTokenDecimals)} Cabbage
               <Box ml={1}>
                 <img src="coins/GOAT.png" alt="GOAT" width={15} height={15} />
               </Box>
@@ -119,11 +127,11 @@ export default function() {
         name: 'Reward per 1 LP token for 50 days',
         value: [
           <div>
-            {formatUnits(rewardPerToken, 20)} Goat
+            {formatUnits(rewardPerToken, 20)} Cabbage
           </div>,
           <div>
             <div className="text-sm">Remaining Tokens</div>
-            <div>{formatUnits(getRewardForDuration, goatDecimals, 13)}</div>
+            <div>{formatUnits(getRewardForDuration, rewardTokenDecimals, 13)}</div>
           </div>,
         ],
         tip: '',
@@ -131,7 +139,7 @@ export default function() {
     ],
     [
       apy,
-      goatDecimals,
+      rewardTokenDecimals,
       wrappedBNBDecimals,
       rewardMultiplier,
       bnbPonusPoolShareAmount,

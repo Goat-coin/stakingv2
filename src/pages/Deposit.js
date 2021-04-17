@@ -91,7 +91,7 @@ function GetLPTokens({ history }) {
     lpName,
     lpAddress,
     lpDecimals,
-    goatAddress,
+    rewardTokenAddress,
     address,
     signer,
   } = useWallet();
@@ -136,7 +136,7 @@ function GetLPTokens({ history }) {
     return subscribe(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contract, address]);
 
-  return !(goatAddress && lpAddress) ? null : (
+  return !(rewardTokenAddress && lpAddress) ? null : (
     <>
       {!address ? null : (
         <Box mt={2}>
